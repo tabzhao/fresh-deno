@@ -13,6 +13,7 @@ export const handler: Handlers = {
     const url = new URL(req.url)
     const params = url.searchParams
     const time = params.get('time')
+    const type = params.get('type')
     const json = {
       couponList: [],
       desc: "支付成功",
@@ -36,10 +37,20 @@ export const handler: Handlers = {
       resultCode: 1,
       storeId: 6285
     }
+    const json2 = {
+      couponList: [],
+      desc: "未找到交易信息，请重新扫码收款",
+      mchNo: null,
+      merchantId: null,
+      orderInfo: null,
+      orderNo: null,
+      resultCode: -1,
+      storeId: null
+    }
     await sleep(time || '')
     return new Response(JSON.stringify({
       code: 1,
-      data: json,
+      data: type === '1' || !type ? json2 : json,
       http_code: 200,
       msg: ""
     }), {
