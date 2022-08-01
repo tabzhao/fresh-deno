@@ -1,7 +1,18 @@
 import { Handlers } from '$fresh/server.ts';
 
+const sleep = (time = '0'): Promise<void> => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve()
+    }, Number(time) * 1000);
+  })
+}
+
 export const handler: Handlers = {
-  GET(req, ctx) {
+  async GET(req, ctx) {
+    const url = new URL(req.url)
+    const params = url.searchParams
+    const time = params.get('time')
     const json = {
       couponList: [],
       desc: "支付成功",
@@ -25,6 +36,7 @@ export const handler: Handlers = {
       resultCode: 1,
       storeId: 6285
     }
+    await sleep(time || '')
     return new Response(JSON.stringify({
       code: 1,
       data: json,
@@ -34,11 +46,14 @@ export const handler: Handlers = {
       headers: { "Content-Type": "application/json" }
     })
   },
-  POST(req, ctx) {
+  async POST(req, ctx) {
     // if (req.body) {
     //   const body = await req.text();
     //   // console.log("Body:", JSON.parse(body));
     // }
+    const url = new URL(req.url)
+    const params = url.searchParams
+    const time = params.get('time')
     const json = {
       couponList: [],
       desc: "OK",
@@ -62,6 +77,7 @@ export const handler: Handlers = {
       resultCode: 1,
       storeId: 6285
     }
+    await sleep(time || '')
     return new Response(JSON.stringify({
       code: 1,
       data: json,
