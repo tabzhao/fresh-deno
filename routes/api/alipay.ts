@@ -29,11 +29,11 @@ export const handler: Handlers = {
       headers: { "Content-Type": "application/json" }
     })
   },
-  async POST(req, ctx) {
-    if (req.body) {
-      const body = await req.text();
-      console.log("Body:", JSON.parse(body));
-    }
+  POST(req, ctx) {
+    // if (req.body) {
+    //   const body = await req.text();
+    //   // console.log("Body:", JSON.parse(body));
+    // }
     const json = {
       couponList: [],
       desc: "OK",
