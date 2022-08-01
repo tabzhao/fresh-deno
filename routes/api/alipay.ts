@@ -25,7 +25,12 @@ export const handler: Handlers = {
       resultCode: 1,
       storeId: 6285
     }
-    return new Response(JSON.stringify(json), {
+    return new Response(JSON.stringify({
+      code: 1,
+      data: json,
+      http_code: 200,
+      msg: ""
+    }), {
       headers: { "Content-Type": "application/json" }
     })
   },
@@ -57,7 +62,12 @@ export const handler: Handlers = {
       resultCode: 1,
       storeId: 6285
     }
-    return new Response(JSON.stringify(json), {
+    return new Response(JSON.stringify({
+      code: 1,
+      data: json,
+      http_code: 200,
+      msg: ""
+    }), {
       headers: { "Content-Type": "application/json" }
     })
   }
