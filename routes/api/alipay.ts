@@ -8,8 +8,11 @@ const sleep = (time = '0'): Promise<void> => {
   })
 }
 
+let times = 0
+
 export const handler: Handlers = {
   async GET(req, ctx) {
+    times++
     const url = new URL(req.url)
     const params = url.searchParams
     const time = params.get('time')
@@ -50,7 +53,7 @@ export const handler: Handlers = {
     await sleep(time || '')
     return new Response(JSON.stringify({
       code: 1,
-      data: type === '1' || !type ? json2 : json,
+      data: (type === '1' || !type) && times < 10 ? json2 : json,
       http_code: 200,
       msg: ""
     }), {
