@@ -34,7 +34,7 @@ export const handler: Handlers = {
           payTimestamp: 1659342832,
           settlementTotalFee: 0.01,
           subOpenId: null,
-          totalFee: 0.01,
+          totalFee: 10000.01,
       },
       orderNo: "face-a-1471-1659342820595",
       resultCode: 1,
